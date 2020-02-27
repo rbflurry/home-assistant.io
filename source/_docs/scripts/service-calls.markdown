@@ -89,7 +89,7 @@ data_template:
 
 ### Other Entity_ID options
 
-To bypass a service call you can specify the entity_id as none via a template
+To bypass a service call you can specify the entity_id as `none` via a template
 
 ```yaml
 service: thermostat.set_temperature
@@ -102,7 +102,7 @@ data_template:
     {% endif %}{% endraw %}
 ```
 
-Or use entity_id: all to include all entity_ids
+Or use entity_id: `all` to include all entity_ids
 
 ```yaml
 service: switch.turn_on
