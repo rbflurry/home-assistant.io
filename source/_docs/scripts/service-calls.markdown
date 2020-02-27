@@ -87,6 +87,34 @@ data_template:
   temperature: {% raw %}{{ 22 - distance(states.device_tracker.paulus) }}{% endraw %}
 ```
 
+### Other Entity_ID options
+
+To bypass a service call you can specify the entity_id as none via a template
+
+```yaml
+service: thermostat.set_temperature
+data_template:
+  entity_id: >
+    {% raw %}{% if is_state('device_tracker.paulus', 'home') %}
+      thermostat.upstairs
+    {% else %}
+      none
+    {% endif %}{% endraw %}
+```
+
+Or use entity_id: all to include all entity_ids
+
+```yaml
+service: switch.turn_on
+data_template:
+  entity_id: >
+    {% raw %}{% if states('sensor.temperature') | float > 15 %}
+      switch.fan
+    {% else %}
+      all
+    {% endif %}{% endraw %}
+```
+
 ### `homeassistant` services
 
 There are four `homeassistant` services that aren't tied to any single domain, these are:
